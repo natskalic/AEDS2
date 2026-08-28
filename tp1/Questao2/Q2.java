@@ -1,30 +1,29 @@
-import java.util.*;
+import java.util.Scanner;
+import java.util.Random;
 class Q2{
 
-	public static void funcao(String frase){
-		Random random= new Random();
-		String stringNova="";
-		int posicao=random.nextInt(frase.length());
-		char letra2=(char)('a'+ random.nextInt(26));
-			for(int i=0;i<frase.length();i++){
-				if(frase.charAt(i)==frase.charAt(posicao))
-				stringNova+=letra2;
-				else
-				stringNova+=frase.charAt(i);
-			}
-			System.out.println(stringNova);
-	}
+        public static void aleatorizar(String str,Random random){
+                String strNova="";
+		char letra1=(char)('a'+random.nextInt(26));
+		char letra2=(char)('a'+random.nextInt(26));
+                        for(int i=0;i<str.length();i++){
+                                if(str.charAt(i)==letra2)
+                                        strNova+=letra1;
+                                else
+                                        strNova+=str.charAt(i);
+                        }
+                                System.out.println(strNova);
+        }
 
-	public static void main(String[] args){
-		Scanner scanner=new Scanner(System.in);
-		String frase=scanner.nextLine();
-		while(!frase.equals("FIM")){
-			funcao(frase);
-			frase=scanner.nextLine();
-		}
-	}
+        public static void main(String[] args){
+		Random random=new Random();
+		random.setSeed(4);
+                Scanner sc=new Scanner(System.in);
+                String str=sc.nextLine();
+                while(str.length()!=3 ||str.charAt(0)!='F' || str.charAt(1)!='I' || str.charAt(2)!='M'){
+                        aleatorizar(str,random);
+                        str=sc.nextLine();
+                }
+        }
 }
 
-
-
-			

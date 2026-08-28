@@ -1,5 +1,5 @@
 #include <stdio.h>
-void inversao(char * string,int tam){
+void inversao(char * string,int tam){//vai trocando a posicao as posicoes com swap, para que a string seja invertida. Só precisa ir até o meio.
 	char tmp;int meio=tam/2;
 	for(int i=0;i<meio;i++){
 		tmp=string[i];
@@ -11,7 +11,7 @@ void inversao(char * string,int tam){
 int main(){
 	char vetor[100];int tam=0;
 	fgets(vetor,100,stdin);
-	while(vetor[0]!='F' && vetor[1]!='I' && vetor[2]!='M' && vetor[3]!='\0'){
+	while(!(vetor[0]=='F' && vetor[1]=='I' && vetor[2]=='M' && (vetor[3]=='\n' || vetor[3]=='\0'))){//leituras de entrada normais.
 		while(vetor[tam]!='\n'){
 			tam++;
 		}
