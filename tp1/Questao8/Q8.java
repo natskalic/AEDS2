@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+class Q8{
 
 public static int numero(char c){//se o caractere estiver entre 0 e 9, é um digito.
 	if(c>='0' && c<='9') return 1;
@@ -41,6 +42,8 @@ public static void main(String[] args){
 		else System.out.println("NAO");
 		str=scanner.nextLine();
 	}
+}
+
 }
 
 

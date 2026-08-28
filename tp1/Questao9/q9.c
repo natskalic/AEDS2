@@ -1,7 +1,6 @@
 #include <stdio.h>
 char * ciframento(char * palavra, int i){
-    if(palavra[i]=='\n') palavra[i]='\0';// a recursao acaba quando a string acaba
-    if(palavra[i]=='\0') return palavra;
+    if(palavra[i]=='\0') return palavra;//recursao acaba quando a string acaba
     palavra[i]+=3;
     return(ciframento(palavra,i+1));// passa a mesma string, mas um endereço a frente. Assim, a string vai sendo percorrida
 }
