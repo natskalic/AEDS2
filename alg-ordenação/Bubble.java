@@ -9,6 +9,6 @@ class Bubble extends Geracao{
 				if(array[j]>array[j+1])
 					swap(j,j+1);
 			}
-		}
+		}	
 	}
 }

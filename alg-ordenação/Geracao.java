@@ -17,6 +17,7 @@ class Geracao{
 			System.out.print(array[i]);
 			System.out.print(" ");
 		}
+		System.out.print("\n");
 	}
 	public void swap(int menor, int i){
 		int temp=array[menor];

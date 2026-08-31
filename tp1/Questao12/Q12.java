@@ -8,11 +8,9 @@ class Q12{
 
 	public static void main(String[] args){
 		Scanner sc=new Scanner(System.in);
-		int n=sc.nextInt();
-		while(n!=250){//leitura pela milésima vez
+		while(sc.hasNextInt()){//leitura pela milésima vez
+			int n=sc.nextInt();
 			System.out.println(soma(n));
-			n=sc.nextInt();
 		}
-		System.out.println(soma(250));
 	}
 }

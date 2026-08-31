@@ -1,4 +1,4 @@
-import java.util.*;
+
 
 class Selecao extends Geracao{
 	Selecao(int tam){
