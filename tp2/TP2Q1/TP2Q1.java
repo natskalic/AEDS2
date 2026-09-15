@@ -1,0 +1,223 @@
+import java.util.Scanner;
+class Veiculo{
+	private int id;
+	private String marca;
+	private String modelo;
+	private int ano;
+	private String categoria;
+	private String[] combustivel;
+	private int cilindros;
+	private double cilindrada;
+	private String transmissao;
+	private String tracao;
+	private double consumoCidade;
+	private double consumoEstrada;
+	private double co2;
+	private boolean turbo;
+	Data dataRegistro;
+	Veiculo(){
+
+	}
+	public int getId(){
+		return id;
+	}
+	public String getMarca(){
+		return marca;
+	}
+	public String getModelo(){
+		return modelo;
+	}
+	public int getAno(){
+		return ano;
+	}
+	public String getCategoria(){
+		return categoria;
+	}
+	public String getCombustivel(){
+		String string[]=combustivel.split(";");
+		if(string.length==3){
+		String  formatada=String.format("[%s,%s,%s]",string[0].string[1],string[2]);
+		}
+		if(string.length==2){
+			String formatada=String.format("[%s,%s]",string[0],string[1]);
+		}
+		if(string.length==1){
+			String formatada=String.format("[%s]",string[0]);
+		}
+		return formatada;
+	}
+	public double getCilindrada(){
+		return cilindrada;
+	}
+	public String getTransmissao(){
+		return transmissao;
+	}
+	public String getTracao(){
+		return tracao;
+	}
+	public double getConsumoCidade(){
+		return ConsumoCidade;
+	}
+	public double getConsumoEstrada(){
+		return ConsumoEstrada;
+	}
+	public double getCo2(){
+		return co2;
+	}
+	public boolean getTurbo(){
+		return turbo;
+	}
+	public Data getData(){
+		return dataRegistro;
+	}
+	public void setId(int id){
+		this.id=id;
+	}
+	public void setMarca(String marca){
+		this.marca=marca;
+	}
+	public void setModelo(String modelo){
+		this.modelo=modelo;
+	}
+	public void setAno(int ano){
+		this.ano=ano;
+	}
+	public void setCategoria(String categoria){
+		this.categoria=categoria;
+	}
+	public void setCombustivel(String[] combustivel){
+		this.combustivel[]=combustivel[];
+	}
+	public void setCilindrada(double cilindrada){
+		this.cilindrada=cilindrada;
+	}
+	public void setTransmissao(String transmissao){
+		this.transmissao=transmissao;
+	}
+	public void setTracao(String tracao){
+		this.tracao=tracao;
+	}
+	public void setConsumoCidade(double consumoCidade){
+		this.cosumoCidade=consumoCidade;
+	}
+	public void setConsumoEstrada(double consumoEstrada){
+		this.consumoEstrada=consumoEstrada;
+	}
+	public void setCo2(double co2){
+		this.co2=co2;
+	}
+	public void setTurbo(boolean turbo){
+		this.turbo=turbo;
+	}
+	public void setData(Data dataRegistro){
+		this.dataRegistro=dataRegistro;
+	}
+}
+
+	public static Veiculo parseVeiculo(String s){
+		int id,ano;
+		String marca,modelo,categoria,transmissao,tracao;
+		String[] combustivel;
+		double cilindradas,consumoCidade,consumoEstrada,co2;
+		boolean turbo;
+		Veiculo carro=new Veiculo();
+		String[] dados=s.split(",");
+		String[] combustivel=dados[5].split(";");
+		carro.setDataRegistro(Data.parseData(dados[14]));
+		carro.setId(Integer.parseInt(dados[0]));
+		carro.setMarca(dado[1]);
+		carro.setModelo(dados[2]);
+		carro.setAno(Integer.parseInt(dados[3]));
+		carro.setCategoria(dados[4]);
+		carro.setCombustivel(combustivel);
+		carro.setCilindro(Integer.parseInt(dados[6]));
+		carro.setCilindrada(Double.parseDouble(dados[7]));
+		carro.setTransmissao(dados[8]);
+		carro.setTracao(dados[9]);
+		carro.setConsumoCidade(Double.parseDouble(dados[10]));
+		carro.setConsumoEstrada(Double.parseDouble(dados[11]));
+		carro.setCo2(Double.parseDouble(dados[12]));
+		carro.setTurbo(Boolean.parseBoolean(dados[13]));
+		carro.setData(dataRegistro);
+		return carro;
+	}
+
+public String format() {
+    return String.format("[%s ## %s ## %s ## %d ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s]",
+            getId(), getMarca(), getModelo(), getAno(), getCategria(),
+            getCombustivel(), getCilindro(), getCilindrada(), getTransmissao(),
+            getTracao(), getConsumoCidade(), getConsumoEstrada(), getCo2(),
+            getTurbo(), getData());
+}
+
+class Data{
+	private int ano;
+	private int mes;
+	private int dia;
+	public Data(){
+
+	}
+	public Data(int ano,int mes,int dia){
+		this.ano=ano;
+		this.mes=mes;
+		this.dia=dia;
+	}
+	public int getAno(){
+		return ano;
+	}
+	public int getDia(){
+		return dia;
+	}
+	public int getMes(){
+		return mes;
+	}
+	public void setAno(int ano){
+		this.ano=ano;
+	}
+	public void setMes(int mes){
+		this.mes=mes;
+	}
+	public setDia(int dia){
+		this.dia=dia;
+	}
+	public static String parseData(String s){
+		int dia,mes,ano;
+		String[] split= s.split("-");
+
+		ano=Integer.parseInt(split[0]);
+		mes=Integer.parseInt(split[1]);
+		dia=Integer.parseInt(split[2]);
+		return Data=new Data(ano,mes,dia);
+	}
+	public String format(){
+		String formatada=String.format("%02d/%02d/%04d",dia,mes,ano);
+		return formatada;
+	}
+
+}
+
+class Leitor{
+	public static Veiculo[]
+}
+
+
+class TP2Q1{
+	public static void main(String[] args){
+		Veiculo array[]=new Veiculo[500];
+		array=Leitor(caminho);
+		Scanner sc=new Scanner(System.in);
+		int[] vetor=new int[50];
+		int numeroId=sc.nextLine();
+		int i=0;
+		while(numeroId!=-1){
+			vetor[i]=numeroId;
+			i++;
+			numeroId=sc.nextLine();
+		}
+		for(int j=0;j<50;j++){
+			for(int k=0;k<500;k++){
+				if(array.id[k]==vetor[j]){
+					system.out.println(carros[k].format());
+		}
+	}
+
