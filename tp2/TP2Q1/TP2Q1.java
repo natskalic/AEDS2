@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
 class Veiculo{
 	private int id;
 	private String marca;
