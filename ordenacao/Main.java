@@ -1,7 +1,8 @@
 
 class Main{
 	public static void main(String[] args){
-		Counting a= new Counting(10);
+		Radix a= new Radix(10);
+		a.decrescente();
 		a.mostrarVetorGerado();
 		a.sort();
 		a.mostrarVetorOrdenado();

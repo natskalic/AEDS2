@@ -2,12 +2,15 @@ import java.util.*;
 
 class Geracao{
 	protected int[] array;
+	protected int n;
 	public Geracao(int tam){
 		array= new int[tam];
-		Random random=new Random();
+		n=array.length;
+	}
 
-		for(int i=0;i<tam;i++){
-			array[i]=random.nextInt(10);
+	public void decrescente(){
+		for(int i=0;i<n;i++){
+			array[i]=n-i;
 		}
 	}
 
@@ -24,6 +27,15 @@ class Geracao{
 		array[menor]=array[i];
 		array[i]=temp;
 	}
+
+	int getMaior(int[] array){
+		int maior=array[0];
+		for(int i=1;i<n;i++){
+			if(array[i]>maior) maior=array[i];
+		}
+		return maior;
+	}
+
 	public void mostrarVetorOrdenado(){
 		System.out.print("Vetor ordenado: ");
 		for(int i=0;i<array.length;i++){

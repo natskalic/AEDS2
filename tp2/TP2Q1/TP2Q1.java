@@ -6,7 +6,7 @@ class Veiculo{
 	private int ano;
 	private String categoria;
 	private String[] combustivel;
-	private int cilindros;
+	private int cilindro;
 	private double cilindrada;
 	private String transmissao;
 	private String tracao;
@@ -33,10 +33,10 @@ class Veiculo{
 	public String getCategoria(){
 		return categoria;
 	}
-	public String getCombustivel(){
+	public String[] getCombustivel(){
 		String string[]=combustivel.split(";");
 		if(string.length==3){
-		String  formatada=String.format("[%s,%s,%s]",string[0].string[1],string[2]);
+		String  formatada=String.format("[%s,%s,%s]",string[0],string[1],string[2]);
 		}
 		if(string.length==2){
 			String formatada=String.format("[%s,%s]",string[0],string[1]);
@@ -45,6 +45,9 @@ class Veiculo{
 			String formatada=String.format("[%s]",string[0]);
 		}
 		return formatada;
+	}
+	public int getCilindro(){
+		return clindro;
 	}
 	public double getCilindrada(){
 		return cilindrada;
@@ -87,6 +90,9 @@ class Veiculo{
 	}
 	public void setCombustivel(String[] combustivel){
 		this.combustivel[]=combustivel[];
+	}
+	public void setCilindro(int cilindro){
+		this.cilindro=cilindro;
 	}
 	public void setCilindrada(double cilindrada){
 		this.cilindrada=cilindrada;
@@ -144,7 +150,7 @@ class Veiculo{
 
 public String format() {
     return String.format("[%s ## %s ## %s ## %d ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s]",
-            getId(), getMarca(), getModelo(), getAno(), getCategria(),
+            getId(), getMarca(), getModelo(), getAno(), getCategoria(),
             getCombustivel(), getCilindro(), getCilindrada(), getTransmissao(),
             getTracao(), getConsumoCidade(), getConsumoEstrada(), getCo2(),
             getTurbo(), getData());
@@ -187,7 +193,7 @@ class Data{
 		ano=Integer.parseInt(split[0]);
 		mes=Integer.parseInt(split[1]);
 		dia=Integer.parseInt(split[2]);
-		return Data=new Data(ano,mes,dia);
+		return new Data(ano,mes,dia);
 	}
 	public String format(){
 		String formatada=String.format("%02d/%02d/%04d",dia,mes,ano);
@@ -197,27 +203,37 @@ class Data{
 }
 
 class Leitor{
-	public static Veiculo[]
+	public Veiculo[] ler(String caminho){
+		Veiculo[]  veiculos=new Veiculo[500];
+		BufferedReader br=new BufferedReader(new FileReader(caminho));
+		String linha=br.nextLine();
+		int cont=0;
+		while(linha=br.nextLine()!=null){
+			Veiculo v=Veiculo.parseVeiculo(linha);
+			veiculos[cont]=v;
+			cont++;
+		}
+		return veiculos;
+	}
 }
 
 
 class TP2Q1{
 	public static void main(String[] args){
-		Veiculo array[]=new Veiculo[500];
-		array=Leitor(caminho);
+		Veiculo array=Leitor.ler(caminho);
 		Scanner sc=new Scanner(System.in);
 		int[] vetor=new int[50];
-		int numeroId=sc.nextLine();
-		int i=0;
+		int numeroId=sc.nextInt();
 		while(numeroId!=-1){
-			vetor[i]=numeroId;
-			i++;
-			numeroId=sc.nextLine();
+			for(int i=0;i<array.length.i++){
+				if(array[k].getId()==numeroId){
+					System.out.println(array[k].format());
+					i=array.length;
+				}
+			}
+			numeroId=sc.nextInt();
 		}
-		for(int j=0;j<50;j++){
-			for(int k=0;k<500;k++){
-				if(array.id[k]==vetor[j]){
-					system.out.println(carros[k].format());
-		}
+		sc.close();
 	}
+}
 
