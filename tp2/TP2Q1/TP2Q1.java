@@ -1,5 +1,5 @@
-import java.util.Scanner;
-import java.io.BufferedReader;
+import java.util.*;
+import java.io.*;
 import java.io.FileReader;
 class Veiculo{
 	private int id;
@@ -35,7 +35,7 @@ class Veiculo{
 	public String getCategoria(){
 		return categoria;
 	}
-	public String getCombustivel(){
+	public String[] getCombustivel(){
 		return combustivel;
 	}
 	public int getCilindro(){
@@ -51,10 +51,10 @@ class Veiculo{
 		return tracao;
 	}
 	public double getConsumoCidade(){
-		return ConsumoCidade;
+		return consumoCidade;
 	}
 	public double getConsumoEstrada(){
-		return ConsumoEstrada;
+		return consumoEstrada;
 	}
 	public double getCo2(){
 		return co2;
@@ -118,7 +118,7 @@ class Veiculo{
 		boolean turbo;
 		Veiculo carro=new Veiculo();
 		String[] dados=s.split(",");
-		String[] combustivel=dados[5].split(";");
+		combustivel=dados[5].split(";");
 		carro.setData(Data.parseData(dados[14]));
 		carro.setId(Integer.parseInt(dados[0]));
 		carro.setMarca(dados[1]);
@@ -138,7 +138,7 @@ class Veiculo{
 	}
 	public String format() {
 		 String strCombustivel = "[";
-      		 for(int i=0 ; i < combustivel.length ; i++){
+      		 for(int i=0;i<combustivel.length;i++){
 	      		strCombustivel += combustivel[i];
 	       		if(i<combustivel.length-1){
 		       	strCombustivel+=",";
@@ -146,11 +146,11 @@ class Veiculo{
 	                }
        		}
        		strCombustivel+="]";
-    	return String.format("[%s ## %s ## %s ## %d ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s ## %s]",
+    	return String.format(Locale.US,"[%s ## %s ## %s ## %d ## %s ## %s ## %s ## %s ## %s ## %s ## %.2f ## %.2f ## %s ## %s ## %s]",
             getId(), getMarca(), getModelo(), getAno(), getCategoria(),
-            getCombustivel(), getCilindro(), getCilindrada(), getTransmissao(),
+            strCombustivel, getCilindro(), getCilindrada(), getTransmissao(),
             getTracao(), getConsumoCidade(), getConsumoEstrada(), getCo2(),
-            getTurbo(), getData());
+            getTurbo(), getData().format());
 	}
 }
 class Data{
@@ -202,15 +202,21 @@ class Data{
 class Leitor{
 	public static Veiculo[] ler(String caminho){
 		Veiculo[]  veiculos=new Veiculo[500];
+		try{
 		File file=new File(caminho);
 		Scanner scanner=new Scanner(file);
-		if(scanner.hasNextLine) scanner.nextLine();
+		if(scanner.hasNextLine()) scanner.nextLine();
 
 		int cont=0;
 		while(scanner.hasNextLine()){
 			String linha=scanner.nextLine();
-			veiculos[count]=Veiculo.parseVeiculo(linha);
+			veiculos[cont]=Veiculo.parseVeiculo(linha);
 			cont++;
+		}
+		scanner.close();
+		}
+		catch (Exception e){
+			return new Veiculo[0];
 		}
 		return veiculos;
 	}
