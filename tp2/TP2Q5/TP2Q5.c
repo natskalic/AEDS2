@@ -58,6 +58,11 @@ Veiculo parseVeiculo(char *linha) {
          data_str);
 
     v.turbo = (strcmp(turbo_str, "true") == 0) ? 1 : 0;
+    for (int i = 0; combustivel_str[i] != '\0'; i++) {
+    	if (combustivel_str[i] == ';') {
+        	combustivel_str[i] = ',';
+    	}
+    }
     strcpy(v.combustivel, combustivel_str);
     v.dataRegistro = parseData(data_str);
     
@@ -65,7 +70,7 @@ Veiculo parseVeiculo(char *linha) {
 }
 
 void formatVeiculo(Veiculo v) {
-    printf("[%d ## %s ## %s ## %d ## %s ## [%s] ## %d ## %.2f ## %s ## %s ## %.2f ## %.2f ## %.2f ## %s ## ",
+    printf("[%d ## %s ## %s ## %d ## %s ## [%s] ## %d ## %.1f ## %s ## %s ## %.2f ## %.2f ## %.1f ## %s ## ",
          v.id,
          v.marca,
          v.modelo,
@@ -85,12 +90,8 @@ void formatVeiculo(Veiculo v) {
     printf("]\n");
 }
 
-int leitor(char *caminho, Veiculo veiculos[]) {
+void leitor(char *caminho, Veiculo veiculos[]) {
     FILE *file = fopen(caminho, "r");
-    if (file == NULL) {
-        return 0;
-    }
-
     char linha[1000];
     fgets(linha, sizeof(linha), file);
 
@@ -102,20 +103,53 @@ int leitor(char *caminho, Veiculo veiculos[]) {
     }
 
     fclose(file);
-    return i;
+}
+
+int getMaior(Veiculo array[],int tam){
+	int maior=array[0].cilindro;
+	for(int i=1;i<tam;i++){
+		if(array[i].cilindro>maior)maior=array[i].cilindro;
+	}
+	return maior;
+}
+void ordenar(Veiculo array[],int tam){
+	int maior=getMaior(array,tam);
+	Veiculo novo[500];
+	int contador[maior+1];
+	for(int i=0;i<maior+1;i++){
+		contador[i]=0;
+	}
+	for(int i=0;i<tam;i++){
+		contador[array[i].cilindro]++;
+	}
+	for(int j=1;j<maior+1;j++){
+		contador[j]+=contador[j-1];
+	}
+	for(int i=tam-1;i>=0;i--){
+		novo[contador[array[i].cilindro]-1]=array[i];
+		contador[array[i].cilindro]--;	
+	}
+	for(int i=0;i<tam;i++){
+		array[i]=novo[i];
+	}
 }
 
 int main() {
     Veiculo array[500];
-    int totalVeiculos = leitor("/tmp/veiculos.csv", array);
+    Veiculo veiculos[500];
+    leitor("/tmp/veiculos.csv", array);
 
-    int numeroId;
+    int numeroId,j=0;
     while (scanf("%d", &numeroId) == 1 && numeroId != -1) {
-        for (int i = 0; i < totalVeiculos; i++) {
+        for (int i = 0; i < 500; i++) {
             if (array[i].id == numeroId) {
-                formatVeiculo(array[i]);
+                veiculos[j]=array[i];
+		j++;
             }
         }
     }
+    ordenar(veiculos,j);
+    for(int i=0;i<j;i++){
+	    formatVeiculo(veiculos[i]);
+    }
 }
-
